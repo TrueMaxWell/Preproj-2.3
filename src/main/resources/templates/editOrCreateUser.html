@@ -9,12 +9,13 @@
 
 <div>
     <nobr>
-        <a th:href="@{/}">Back to Index</a>
+        <a th:href="@{/users/}">Back to Users</a>
     </nobr>
 </div>
 <br/><br/>
 <div>
-    <form th:object="${user}" method="POST">
+    <form th:action="${create} ? @{/users/new_user/create} : @{/users/{userId}/edit/submit(userId=${user.id})}"
+            th:object="${user}" method="POST">
     <table border="1">
         <tr>
             <th>Name</th>
@@ -28,7 +29,7 @@
             <td><label>
                 <input type="text" th:field="*{lastName}" size="50" />
             </label></td>
-            <td><input type="submit" value="Add User" /></td>
+            <td><input type="submit" th:value="${create} ? 'Create' : 'Edit'" /></td>
         </tr>
     </table>
     </form>
