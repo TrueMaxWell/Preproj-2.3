@@ -9,8 +9,8 @@
 
 <div>
   <nobr>
-    <a th:href="@{/add}">Add User</a> |
-    <a th:href="@{/}">Back to Index</a>
+    <a th:href="@{/users/new_user}">Add User</a> |
+    <a th:href="@{/users/}">Back to Index</a>
   </nobr>
 </div>
 <br/><br/>
@@ -24,11 +24,11 @@
       <th>Delete</th>
     </tr>
     <tr th:each ="user : ${users}">
-      <td th:utext="${user.getId()}">...</td>
-      <td th:utext="${user.getFirstName()}">...</td>
-      <td th:utext="${user.getLastName()}">...</td>
-      <td><a th:href="@{/edit(userId=${user.getId()})}">Edit</a></td>
-      <td><a th:href="@{/delete(userId=${user.getId()})}">Delete</a></td>
+      <td th:utext="${user.id}">...</td>
+      <td th:utext="${user.firstName}">...</td>
+      <td th:utext="${user.lastName}">...</td>
+      <td><a th:href="@{/users/edit/{userId}(userId = ${user.id})}">Edit</a></td>
+      <td><a th:href="@{/users/delete/{userId}(userId = ${user.id})}">Delete</a></td>
     </tr>
   </table>
 </div>

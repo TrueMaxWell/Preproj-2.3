@@ -1,10 +1,14 @@
 package app.model;
 
-import org.springframework.web.bind.annotation.ModelAttribute;
-
+import lombok.*;
 import javax.persistence.*;
 
+
 @Entity
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Table(name = "users")
 public class User {
 
@@ -17,37 +21,4 @@ public class User {
 
     @Column(name = "last_name")
     private String lastName;
-
-    public User() {
-
-    }
-
-    public User(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 }

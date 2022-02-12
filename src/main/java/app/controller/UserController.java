@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping(value = "/users")
 public class UserController {
 
     @Autowired
@@ -15,40 +16,40 @@ public class UserController {
 
     @GetMapping(value = "/")
     public String userListPage(Model model) {
-        model.addAttribute("users", userService.listUsers());
+        model.addAttribute("users", userService.getUsersList());
         return "index";
     }
 
-    @GetMapping(value = "/add")
+    @GetMapping(value = "/new_user")
     public String showCreateUserPage(Model model) {
         User user = new User();
         model.addAttribute("user", user);
         return "editOrCreateUser";
     }
 
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/new_user")
     public String createUserPage(@ModelAttribute("user") User user) {
         userService.add(user);
-        return "redirect:/";
+        return "redirect:/users/";
     }
 
-    @GetMapping(value = "/edit")
-    public String showEditUserPage(Model model, @RequestParam(value = "userId") long userId) {
+    @GetMapping(value = "/edit/{userId}")
+    public String showEditUserPage(Model model, @PathVariable long userId) {
         User user = userService.getUser(userId);
         model.addAttribute("user", user);
         return "editOrCreateUser";
     }
 
-    @PostMapping(value = "/edit")
-    public String editUserPage(@ModelAttribute("user") User user, @RequestParam(value = "userId") long userId) {
+    @PostMapping(value = "/edit/{userId}")
+    public String editUserPage(@ModelAttribute("user") User user, @PathVariable long userId) {
         user.setId(userId);
         userService.changeUser(user);
-        return "redirect:/";
+        return "redirect:/users/";
     }
 
-    @GetMapping(value = "/delete")
-    public String deleteUserPage(@RequestParam(value = "userId") long userId) {
+    @GetMapping(value = "/delete/{userId}")
+    public String deleteUserPage(@PathVariable long userId) {
         userService.removeUser(userId);
-        return "redirect:/";
+        return "redirect:/users/";
     }
 }
