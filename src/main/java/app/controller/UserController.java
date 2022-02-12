@@ -20,7 +20,7 @@ public class UserController {
         return "index";
     }
 
-    @GetMapping("/new_user")
+    @GetMapping("/newUser")
     public String showCreateUserPage(Model model) {
         User user = new User();
         model.addAttribute("user", user);
@@ -28,7 +28,7 @@ public class UserController {
         return "editOrCreateUser";
     }
 
-    @PostMapping("/new_user/create")
+    @PostMapping("/newUser/create")
     public String createUserPage(@ModelAttribute("user") User user) {
         userService.add(user);
         return "redirect:/users/";
