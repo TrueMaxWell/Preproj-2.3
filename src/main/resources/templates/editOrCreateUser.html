@@ -14,7 +14,7 @@
 </div>
 <br/><br/>
 <div>
-    <form th:action="${create} ? @{/users/new_user/create} : @{/users/{userId}/edit/submit(userId=${user.id})}"
+    <form th:action="${create} ? @{/users/newUser/create} : @{/users/{userId}/edit/submit(userId=${user.id})}"
             th:object="${user}" method="POST">
     <table border="1">
         <tr>
